@@ -20,78 +20,45 @@ def root():
 
 
 @app.get("/tasks")
-def list_tasks():
-    return {
-        "tasks": [
-            {
-                "task_id": task["task_id"],
-                "task_name": task["task_name"],
-                "difficulty": task["difficulty"],
-                "max_steps": task["max_steps"],
-                "action_schema": {
-                    "action_type": [
-                        "read_ticket",
-                        "classify_ticket",
-                        "set_priority",
-                        "route_ticket",
-                        "request_info",
-                        "draft_reply",
-                        "resolve_ticket",
-                        "escalate_ticket",
-                        "noop",
-                    ],
-                    "optional_fields": [
-                        "category",
-                        "priority",
-                        "team",
-                        "info_request",
-                        "reply_text",
-                        "notes",
-                    ],
-                },
-            }
-            for task in TASKS.values()
-        ]
-    }
+def tasks():
+    from app.tasks import TASKS
+    return list(TASKS.keys())
 
 
 @app.post("/reset")
-def reset(task_id: Optional[str] = "easy_billing_refund"):
+def reset(task_id: str = "easy_billing_refund"):
     env = SupportOpsEnv(task_id=task_id)
     obs = env.reset()
     session_id = str(uuid.uuid4())
     SESSIONS[session_id] = env
-    return {"session_id": session_id, "observation": obs.model_dump()}
+    return env.reset(task_id)
 
 
 @app.post("/step")
-def step(session_id: str, action: Action):
+def step(action: Action):
     if session_id not in SESSIONS:
         raise HTTPException(status_code=404, detail="Invalid session_id")
     env = SESSIONS[session_id]
     result = env.step(action)
-    return result.model_dump()
+    return env.step(action)
 
 
 @app.get("/state")
-def state(session_id: str):
+def state():
     if session_id not in SESSIONS:
         raise HTTPException(status_code=404, detail="Invalid session_id")
     env = SESSIONS[session_id]
-    return env.state().model_dump()
+    return env.state()
 
 
 @app.get("/grader")
-def grader(session_id: str):
-    if session_id not in SESSIONS:
-        raise HTTPException(status_code=404, detail="Invalid session_id")
-    env = SESSIONS[session_id]
-    st = env.state()
-    if not st.done:
-        return {"error": "Episode not finished yet."}
-    return grade_episode(st)
+def grader():
+    if env._state is None:
+        return {"error": "Env not initialized"}
+    from app.graders import grade_episode
+    return grade_episode(env._state)
 
 
 @app.get("/baseline")
 def baseline():
-    return run_baseline()
+    return {"message": "Run your inference.py script for baseline evaluation."}

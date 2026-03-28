@@ -10,7 +10,10 @@ def summarize_history(action_history: list[dict]) -> list[str]:
 
 
 def build_observation(state: InternalState) -> Observation:
-    visible_ticket = state.ticket if state.visible_ticket_loaded else None
+    if isinstance(state, dict):
+        visible_ticket = state.get('ticket') if state.get('visible_ticket_loaded') else None
+    else:
+        visible_ticket = state.ticket if state.visible_ticket_loaded else None
 
     required_missing = []
     for req in state.gt_required_info:

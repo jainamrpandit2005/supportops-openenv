@@ -75,23 +75,24 @@ class InternalState(BaseModel):
 
 class Observation(BaseModel):
     task_id: str
-    task_name: str
-    difficulty: str
-    step: int
+    current_step: int
     max_steps: int
-    visible_ticket: Optional[Ticket] = None
-
-    current_labels: Dict[str, Optional[str]]
-    outstanding_missing_info: List[str]
-    action_history_summary: List[str]
     done: bool
+    visible_ticket: bool
+    predicted_category: Optional[str] = None
+    predicted_priority: Optional[str] = None
+    routed_team: Optional[str] = None
+    requested_info: List[str] = []
+    drafted_reply: Optional[str] = None
+    resolution_status: Optional[str] = None
+    last_action_error: bool = False
 
 
 class Action(BaseModel):
-    action_type: ActionType
-    category: Optional[TicketCategory] = None
-    priority: Optional[PriorityLevel] = None
-    team: Optional[TeamName] = None
+    action_type: str
+    category: Optional[str] = None
+    priority: Optional[str] = None
+    team: Optional[str] = None
     info_request: Optional[str] = None
     reply_text: Optional[str] = None
     notes: Optional[str] = None
