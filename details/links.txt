@@ -4,3 +4,5 @@ Hugging Face Space:
 https://huggingface.co/spaces/jainampandit/supportops-openenv
 Live app:
 https://jainampandit-supportops-openenv.hf.space
+
+hugging face password:JaIn@2005
