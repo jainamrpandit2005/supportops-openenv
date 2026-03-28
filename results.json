@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "task_id": "easy_billing_refund",
+      "reward_total": -0.78,
+      "steps": 8
+    },
+    {
+      "task_id": "hard_abuse_technical_combo",
+      "reward_total": -0.68,
+      "steps": 8
+    },
+    {
+      "task_id": "medium_account_lockout",
+      "reward_total": -0.68,
+      "steps": 8
+    }
+  ],
+  "average_score": -0.7133333333333334
+}
