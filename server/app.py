@@ -1,60 +1,59 @@
-from flask import Flask, jsonify, request
+import os
+import sys
+
+# Add root folder to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from flask import Flask, request, jsonify
 from env import EmailTriageEnv, EmailAction
 
 app = Flask(__name__)
 
-# Global environment instance
-env = EmailTriageEnv(task_difficulty="easy")
-
+# Global env instance
+env_instance = EmailTriageEnv(task_difficulty="easy")
 
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({
-        "status": "running",
-        "project": "Email Triage OpenEnv",
-        "message": "OpenEnv Space is live"
+        "message": "Email Triage OpenEnv is running!",
+        "status": "ok"
     })
-
 
 @app.route("/health", methods=["GET"])
 def health():
-    return jsonify({"health": "healthy"})
-
+    return jsonify({"status": "healthy"})
 
 @app.route("/reset", methods=["GET", "POST"])
 def reset_env():
-    global env
+    global env_instance
 
-    task = "easy"
+    difficulty = "easy"
 
     if request.method == "POST":
         data = request.get_json(silent=True) or {}
-        task = data.get("task", "easy")
+        difficulty = data.get("task_id", data.get("difficulty", "easy"))
+    else:
+        difficulty = request.args.get("task_id", "easy")
 
-    if request.method == "GET":
-        task = request.args.get("task", task)
+    if difficulty not in ["easy", "medium", "hard"]:
+        difficulty = "easy"
 
-    env = EmailTriageEnv(task_difficulty=task)
-    obs = env.reset()
+    env_instance = EmailTriageEnv(task_difficulty=difficulty)
+    obs = env_instance.reset()
 
     return jsonify(obs.model_dump())
 
-
-@app.route("/state", methods=["GET", "POST"])
-def state_env():
-    return jsonify(env.state())
-
-
 @app.route("/step", methods=["POST"])
 def step_env():
+    global env_instance
     data = request.get_json(silent=True) or {}
 
     try:
         action = EmailAction(**data)
-    except Exception:
-        action = EmailAction(action_type="noop")
+    except Exception as e:
+        return jsonify({"error": f"Invalid action format: {str(e)}"}), 400
 
-    obs, reward, done, info = env.step(action)
+    obs, reward, done, info = env_instance.step(action)
 
     return jsonify({
         "observation": obs.model_dump(),
@@ -63,12 +62,10 @@ def step_env():
         "info": info
     })
 
-
-def main():
-    import os
-    port = int(os.environ.get("PORT", 7860))
-    app.run(host="0.0.0.0", port=port)
-
+@app.route("/state", methods=["GET"])
+def get_state():
+    global env_instance
+    return jsonify(env_instance.state())
 
 if __name__ == "__main__":
-    main()
+    app.run(host="0.0.0.0", port=7860)
