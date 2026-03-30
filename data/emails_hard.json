@@ -1,0 +1,452 @@
+[
+  {
+    "id": "email_1",
+    "sender": "boss@company.com",
+    "subject": "URGENT: Project deadline changed",
+    "body": "The project deadline has been moved to next Friday. This is critical. Please prioritize this task above all others.",
+    "timestamp": "2024-01-15T09:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_2",
+    "sender": "friend@gmail.com",
+    "subject": "Weekend plans",
+    "body": "Hey! Want to grab coffee this weekend?",
+    "timestamp": "2024-01-15T10:30:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_3",
+    "sender": "noreply@spam.com",
+    "subject": "You won!",
+    "body": "Congratulations! You've won a prize!",
+    "timestamp": "2024-01-15T11:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_4",
+    "sender": "team@company.com",
+    "subject": "Standup",
+    "body": "Standup at 10 AM.",
+    "timestamp": "2024-01-15T08:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_5",
+    "sender": "security@company.com",
+    "subject": "Security alert",
+    "body": "Unusual login detected. Please verify.",
+    "timestamp": "2024-01-15T12:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_6",
+    "sender": "mom@familymail.com",
+    "subject": "Dinner",
+    "body": "Dinner on Sunday?",
+    "timestamp": "2024-01-15T14:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_7",
+    "sender": "hr@company.com",
+    "subject": "Benefits",
+    "body": "Benefits enrollment deadline Friday.",
+    "timestamp": "2024-01-15T15:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_8",
+    "sender": "alerts@fakeshop.com",
+    "subject": "VERIFY NOW",
+    "body": "Click here immediately!",
+    "timestamp": "2024-01-15T16:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_9",
+    "sender": "cto@company.com",
+    "subject": "Architecture proposal",
+    "body": "New architecture needs discussion.",
+    "timestamp": "2024-01-15T13:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_10",
+    "sender": "newsletter@blog.com",
+    "subject": "Weekly",
+    "body": "Weekly newsletter.",
+    "timestamp": "2024-01-15T17:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_11",
+    "sender": "customer@client.com",
+    "subject": "Feedback needed",
+    "body": "Changes needed in deliverables.",
+    "timestamp": "2024-01-15T11:30:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_12",
+    "sender": "ads@online-store.com",
+    "subject": "LIMITED TIME OFFER",
+    "body": "70% OFF EVERYTHING!",
+    "timestamp": "2024-01-15T18:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_13",
+    "sender": "colleague@company.com",
+    "subject": "Review",
+    "body": "Review this document please.",
+    "timestamp": "2024-01-15T13:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_14",
+    "sender": "promo@bank.com",
+    "subject": "URGENT verify",
+    "body": "Verify identity NOW!",
+    "timestamp": "2024-01-15T19:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_15",
+    "sender": "sister@email.com",
+    "subject": "Catch up",
+    "body": "Let's chat soon!",
+    "timestamp": "2024-01-15T20:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_16",
+    "sender": "finance@company.com",
+    "subject": "Reimbursement",
+    "body": "Expense approved.",
+    "timestamp": "2024-01-15T09:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_17",
+    "sender": "noreply@shop.com",
+    "subject": "Shipped",
+    "body": "Order shipped!",
+    "timestamp": "2024-01-15T21:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_18",
+    "sender": "vp@company.com",
+    "subject": "Q1 planning",
+    "body": "Q1 planning session Monday. Attend.",
+    "timestamp": "2024-01-15T10:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_19",
+    "sender": "spammer@ads.com",
+    "subject": "Money",
+    "body": "Make $5000/month!",
+    "timestamp": "2024-01-15T22:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_20",
+    "sender": "support@company.com",
+    "subject": "Ticket resolved",
+    "body": "Support ticket resolved.",
+    "timestamp": "2024-01-15T14:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_21",
+    "sender": "intern@company.com",
+    "subject": "First day tomorrow",
+    "body": "Starting tomorrow! Excited to join the team.",
+    "timestamp": "2024-01-16T09:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_22",
+    "sender": "uncle@mail.com",
+    "subject": "Birthday",
+    "body": "Happy birthday! Hope you have a great day.",
+    "timestamp": "2024-01-16T10:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_23",
+    "sender": "deals@retailer.com",
+    "subject": "Flash sale",
+    "body": "Flash sale happening now!",
+    "timestamp": "2024-01-16T11:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_24",
+    "sender": "pm@company.com",
+    "subject": "Sprint planning",
+    "body": "Sprint planning Thursday 2 PM.",
+    "timestamp": "2024-01-16T08:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_25",
+    "sender": "legal@company.com",
+    "subject": "URGENT compliance issue",
+    "body": "Critical compliance issue needs immediate attention.",
+    "timestamp": "2024-01-16T12:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_26",
+    "sender": "dad@family.com",
+    "subject": "Golf this week",
+    "body": "Want to play golf?",
+    "timestamp": "2024-01-16T13:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_27",
+    "sender": "voucher@shop.com",
+    "subject": "Voucher inside!",
+    "body": "Claim your voucher!",
+    "timestamp": "2024-01-16T14:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_28",
+    "sender": "devops@company.com",
+    "subject": "Infrastructure alert",
+    "body": "Server CPU usage at 90%.",
+    "timestamp": "2024-01-16T15:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_29",
+    "sender": "sales@company.com",
+    "subject": "CRITICAL: Deal closing today",
+    "body": "Major deal closing today. Need your sign-off.",
+    "timestamp": "2024-01-16T16:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_30",
+    "sender": "cousin@email.com",
+    "subject": "Wedding invite",
+    "body": "You're invited to my wedding!",
+    "timestamp": "2024-01-16T17:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_31",
+    "sender": "offers@spam.com",
+    "subject": "EXCLUSIVE deal",
+    "body": "Exclusive deal just for you!",
+    "timestamp": "2024-01-16T18:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_32",
+    "sender": "product@company.com",
+    "subject": "Feature launch",
+    "body": "New feature launching next week.",
+    "timestamp": "2024-01-16T11:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_33",
+    "sender": "exec@company.com",
+    "subject": "URGENT board meeting",
+    "body": "Board meeting tonight at 6 PM. Attendance mandatory.",
+    "timestamp": "2024-01-16T19:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_34",
+    "sender": "friend2@gmail.com",
+    "subject": "Movie night",
+    "body": "Movie night Friday?",
+    "timestamp": "2024-01-16T20:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_35",
+    "sender": "scam@fake.com",
+    "subject": "Inheritance awaits",
+    "body": "You've inherited money! Click here!",
+    "timestamp": "2024-01-16T21:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_36",
+    "sender": "eng@company.com",
+    "subject": "Code freeze",
+    "body": "Code freeze starts tomorrow.",
+    "timestamp": "2024-01-16T12:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_37",
+    "sender": "cfo@company.com",
+    "subject": "URGENT budget review",
+    "body": "Budget review meeting tomorrow. Critical decisions needed.",
+    "timestamp": "2024-01-16T22:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_38",
+    "sender": "grandma@family.com",
+    "subject": "Miss you",
+    "body": "Miss you! Call me soon.",
+    "timestamp": "2024-01-16T23:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_39",
+    "sender": "lottery@scam.com",
+    "subject": "You won lottery!",
+    "body": "Congratulations, you won!",
+    "timestamp": "2024-01-17T00:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_40",
+    "sender": "data@company.com",
+    "subject": "Analytics report",
+    "body": "Q4 analytics report ready.",
+    "timestamp": "2024-01-17T01:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_41",
+    "sender": "board@company.com",
+    "subject": "CRITICAL: Shareholder issue",
+    "body": "Shareholder issue requires immediate attention.",
+    "timestamp": "2024-01-17T02:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_42",
+    "sender": "bestfriend@gmail.com",
+    "subject": "Road trip",
+    "body": "Let's do a road trip!",
+    "timestamp": "2024-01-17T03:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_43",
+    "sender": "malware@bad.com",
+    "subject": "Download now!",
+    "body": "Download this amazing software!",
+    "timestamp": "2024-01-17T04:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_44",
+    "sender": "marketing@company.com",
+    "subject": "Campaign launch",
+    "body": "Marketing campaign launching.",
+    "timestamp": "2024-01-17T05:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_45",
+    "sender": "investor@company.com",
+    "subject": "URGENT investment decision",
+    "body": "Investment decision needed immediately.",
+    "timestamp": "2024-01-17T06:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_46",
+    "sender": "spouse@family.com",
+    "subject": "Dinner plans",
+    "body": "Dinner at home?",
+    "timestamp": "2024-01-17T07:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_47",
+    "sender": "phishing@danger.com",
+    "subject": "Verify account",
+    "body": "Verify account now!",
+    "timestamp": "2024-01-17T08:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_48",
+    "sender": "design@company.com",
+    "subject": "Design review",
+    "body": "Design review tomorrow.",
+    "timestamp": "2024-01-17T09:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_49",
+    "sender": "ceo@company.com",
+    "subject": "URGENT company crisis",
+    "body": "Company crisis requires all hands on deck now.",
+    "timestamp": "2024-01-17T10:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_50",
+    "sender": "kid@family.com",
+    "subject": "School project",
+    "body": "Help with school project?",
+    "timestamp": "2024-01-17T11:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  }
+]

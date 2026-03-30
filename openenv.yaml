@@ -1,0 +1,90 @@
+name: email-triage-openenv
+version: 1.0.0
+description: A real-world email triage and prioritization environment for AI agents
+author: Your Name
+
+environment:
+  class_name: EmailTriageEnv
+  module: env
+
+observation_space:
+  type: object
+  properties:
+    inbox:
+      type: array
+      description: List of emails in the inbox
+    current_email_id:
+      type: string
+      nullable: true
+      description: ID of the currently selected email
+    current_email_content:
+      type: string
+      nullable: true
+      description: Full content of the current email
+    email_count:
+      type: integer
+      description: Total number of emails in inbox
+    processed_count:
+      type: integer
+      description: Number of emails processed
+    inbox_status:
+      type: string
+      description: Current status of the inbox
+
+action_space:
+  type: object
+  properties:
+    action_type:
+      type: string
+      enum: ["read", "categorize", "mark_spam", "mark_urgent", "archive", "move_folder", "noop"]
+      description: Type of action to perform
+    email_id:
+      type: string
+      nullable: true
+      description: ID of the email to act upon
+    category:
+      type: string
+      nullable: true
+      enum: ["work", "personal", "spam", "urgent"]
+      description: Category for the email
+    folder:
+      type: string
+      nullable: true
+      description: Destination folder
+
+reward_space:
+  type: number
+  range: [-1.0, 1.0]
+  description: Reward signal for actions taken
+
+tasks:
+  - name: basic_categorization
+    description: Categorize 10 emails correctly into predefined categories
+    difficulty: easy
+    dataset: emails_easy.json
+    grader:
+      class_name: CategorizationGrader
+      module: graders.categorization_grader
+    
+  - name: email_prioritization
+    description: Triage 20 emails with categorization and appropriate actions
+    difficulty: medium
+    dataset: emails_medium.json
+    grader:
+      class_name: ActionGrader
+      module: graders.action_grader
+    
+  - name: complex_inbox_management
+    description: Manage 50 emails with pattern recognition and spam filtering
+    difficulty: hard
+    dataset: emails_hard.json
+    grader:
+      class_name: ComplexGrader
+      module: graders.complex_grader
+
+metadata:
+  max_steps: 200
+  max_episode_length: 1800
+  time_limit_seconds: 1200
+  vcpu_required: 2
+  memory_mb_required: 4096

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "email_1",
+    "sender": "boss@company.com",
+    "subject": "Project deadline update",
+    "body": "The project deadline has been moved to next Friday. Please ensure all deliverables are completed by then. Let me know if you have any blockers.",
+    "timestamp": "2024-01-15T09:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_2",
+    "sender": "friend@gmail.com",
+    "subject": "Let's grab coffee",
+    "body": "Hey! Want to grab coffee this weekend? I miss catching up with you. Let me know when you're free!",
+    "timestamp": "2024-01-15T10:30:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_3",
+    "sender": "noreply@spam.com",
+    "subject": "Click here to win prizes!",
+    "body": "You have been selected to win 1 million dollars! Click the link below to claim your prize NOW! www.definitely-not-spam.com",
+    "timestamp": "2024-01-15T11:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_4",
+    "sender": "team@company.com",
+    "subject": "Team standup meeting",
+    "body": "Hi team, our daily standup is at 10 AM today. Please come prepared with your updates.",
+    "timestamp": "2024-01-15T08:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_5",
+    "sender": "notifications@bank.com",
+    "subject": "Your account verification",
+    "body": "Please verify your bank account by clicking here: [link]. Your account has been locked for security purposes.",
+    "timestamp": "2024-01-15T12:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_6",
+    "sender": "mom@familymail.com",
+    "subject": "Family dinner this Sunday",
+    "body": "Hi! Just checking if you can make it to family dinner this Sunday at 6 PM. Let me know!",
+    "timestamp": "2024-01-15T14:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_7",
+    "sender": "hr@company.com",
+    "subject": "Benefits enrollment deadline",
+    "body": "This is a reminder that benefits enrollment closes on Friday. Please log into the portal and select your plans.",
+    "timestamp": "2024-01-15T15:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_8",
+    "sender": "marketing@retailstore.com",
+    "subject": "URGENT: Your account has been compromised",
+    "body": "CLICK HERE IMMEDIATELY to reset your password! Your account may be compromised! Act now!",
+    "timestamp": "2024-01-15T16:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_9",
+    "sender": "colleague@company.com",
+    "subject": "Code review for feature X",
+    "body": "I've submitted the code for feature X. Could you review it and provide feedback? Let me know if you have questions.",
+    "timestamp": "2024-01-15T13:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_10",
+    "sender": "grandpa@email.com",
+    "subject": "How are you doing?",
+    "body": "Hi there! Just wanted to check in and see how you're doing. Let's catch up soon!",
+    "timestamp": "2024-01-15T17:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  }
+]

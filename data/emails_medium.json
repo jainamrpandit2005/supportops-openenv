@@ -1,0 +1,182 @@
+[
+  {
+    "id": "email_1",
+    "sender": "boss@company.com",
+    "subject": "URGENT: Project deadline changed",
+    "body": "The project deadline has been moved to next Friday. This is critical. Please prioritize this task above all others.",
+    "timestamp": "2024-01-15T09:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_2",
+    "sender": "friend@gmail.com",
+    "subject": "Weekend plans",
+    "body": "Hey! Want to grab coffee this weekend? I miss catching up with you.",
+    "timestamp": "2024-01-15T10:30:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_3",
+    "sender": "noreply@spam.com",
+    "subject": "You won!",
+    "body": "Congratulations! You've won a prize! Click here to claim.",
+    "timestamp": "2024-01-15T11:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_4",
+    "sender": "team@company.com",
+    "subject": "Standup meeting at 10 AM",
+    "body": "Our daily standup is at 10 AM today. Please be on time.",
+    "timestamp": "2024-01-15T08:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_5",
+    "sender": "security@company.com",
+    "subject": "Security alert: Unusual login detected",
+    "body": "We detected an unusual login attempt on your account. Please verify if this was you and reset your password if needed.",
+    "timestamp": "2024-01-15T12:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_6",
+    "sender": "mom@familymail.com",
+    "subject": "Family dinner Sunday",
+    "body": "Can you make it to family dinner on Sunday at 6 PM?",
+    "timestamp": "2024-01-15T14:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_7",
+    "sender": "hr@company.com",
+    "subject": "Benefits enrollment deadline Friday",
+    "body": "Benefits enrollment closes on Friday. Please complete your enrollment in the portal.",
+    "timestamp": "2024-01-15T15:00:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_8",
+    "sender": "alerts@fakeshop.com",
+    "subject": "URGENT: Verify your account NOW",
+    "body": "Click here immediately to verify your account! This is urgent!",
+    "timestamp": "2024-01-15T16:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_9",
+    "sender": "cto@company.com",
+    "subject": "New architecture proposal",
+    "body": "I want to discuss the new system architecture proposal. This requires immediate attention and could impact our roadmap.",
+    "timestamp": "2024-01-15T13:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_10",
+    "sender": "newsletter@blog.com",
+    "subject": "Weekly newsletter",
+    "body": "Check out this week's best articles and news in tech.",
+    "timestamp": "2024-01-15T17:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_11",
+    "sender": "customer@client.com",
+    "subject": "Project feedback - Changes needed",
+    "body": "We've reviewed the deliverables and have some changes we need made. Can you schedule a call to discuss?",
+    "timestamp": "2024-01-15T11:30:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_12",
+    "sender": "ads@online-store.com",
+    "subject": "LIMITED TIME OFFER: 70% OFF",
+    "body": "DON'T MISS OUT! Get 70% off everything! Use code: SPAM70. LIMITED STOCK!",
+    "timestamp": "2024-01-15T18:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_13",
+    "sender": "colleague@company.com",
+    "subject": "Quick favor",
+    "body": "Hey, could you quickly review the document I sent? Just need your feedback on the approach.",
+    "timestamp": "2024-01-15T13:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_14",
+    "sender": "promo@bank.com",
+    "subject": "Verify your identity - Action required",
+    "body": "URGENT: Verify your identity by clicking here. Your account is at risk!",
+    "timestamp": "2024-01-15T19:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_15",
+    "sender": "sister@email.com",
+    "subject": "Let's chat soon",
+    "body": "Haven't heard from you in a while. Let's schedule a call soon!",
+    "timestamp": "2024-01-15T20:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_16",
+    "sender": "finance@company.com",
+    "subject": "Expense reimbursement approved",
+    "body": "Your recent expense reimbursement of $500 has been approved and will be processed.",
+    "timestamp": "2024-01-15T09:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  },
+  {
+    "id": "email_17",
+    "sender": "noreply@shop.com",
+    "subject": "Your order has shipped!",
+    "body": "Your order #12345 has shipped! Track your package here: [link]",
+    "timestamp": "2024-01-15T21:00:00",
+    "is_spam": false,
+    "true_category": "personal"
+  },
+  {
+    "id": "email_18",
+    "sender": "vp@company.com",
+    "subject": "Q1 planning session - Your attendance required",
+    "body": "We're having a Q1 planning session next Monday. Your attendance is required. This is a strategic meeting.",
+    "timestamp": "2024-01-15T10:00:00",
+    "is_spam": false,
+    "true_category": "urgent"
+  },
+  {
+    "id": "email_19",
+    "sender": "spammer@ads.com",
+    "subject": "Earn money from home!",
+    "body": "Make $5000/month working from home! Click here to get started! No experience needed!",
+    "timestamp": "2024-01-15T22:00:00",
+    "is_spam": true,
+    "true_category": "spam"
+  },
+  {
+    "id": "email_20",
+    "sender": "support@company.com",
+    "subject": "Support ticket #789 - Your issue resolved",
+    "body": "The support ticket you submitted has been resolved. Please verify the fix works for you.",
+    "timestamp": "2024-01-15T14:30:00",
+    "is_spam": false,
+    "true_category": "work"
+  }
+]
