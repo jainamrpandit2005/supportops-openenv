@@ -1,21 +1,30 @@
 import os
+import json
 from typing import Any, Dict, List, Optional
+from openai import OpenAI
 
 # ============================================================
 # Optional OpenAI setup
 # ============================================================
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4-turbo")
-API_BASE = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", os.getenv("OPENAI_MODEL", "gpt-4-turbo"))
+API_BASE_URL = os.getenv("API_BASE_URL", os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1"))
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-print(f"Model: {MODEL}")
-print(f"API Base: {API_BASE}")
+print(f"Model: {MODEL_NAME}")
+print(f"API Base: {API_BASE_URL}")
 
 USE_LLM = bool(OPENAI_API_KEY)
 
 if not USE_LLM:
     print("\n⚠ OPENAI_API_KEY not set.")
     print("Using deterministic rule-based baseline instead.\n")
+
+client = None
+if USE_LLM:
+    client = OpenAI(
+        api_key=OPENAI_API_KEY,
+        base_url=API_BASE_URL
+    )
 
 # ============================================================
 # Import your local environment directly
@@ -75,6 +84,51 @@ def get_email_content(obs: Any) -> str:
 
 
 # ============================================================
+# LLM helper
+# ============================================================
+def call_llm_for_category(sender: str, subject: str, content: str) -> Optional[str]:
+    if client is None:
+        return None
+
+    prompt = f"""
+You are an email triage assistant.
+
+Classify the following email into exactly one of these categories:
+- work
+- personal
+- important
+- spam
+
+Return ONLY one word from the above list.
+
+Sender: {sender}
+Subject: {subject}
+Content: {content}
+""".strip()
+
+    try:
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=[
+                {"role": "system", "content": "You are a precise email classification assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0
+        )
+
+        result = response.choices[0].message.content.strip().lower()
+
+        allowed = {"work", "personal", "important", "spam"}
+        if result in allowed:
+            return result
+
+        return None
+    except Exception as e:
+        print(f"STEP action=llm_classification_failed error={str(e)}")
+        return None
+
+
+# ============================================================
 # Improved rule-based classifier
 # ============================================================
 def classify_email(sender: str, subject: str, content: str = "") -> str:
@@ -122,7 +176,6 @@ def classify_email(sender: str, subject: str, content: str = "") -> str:
     if any(k in text for k in spam_keywords):
         return "spam"
 
-    # bank / verification phishing-like messages
     if "verification" in text and "account" in text:
         return "spam"
 
@@ -180,6 +233,9 @@ def classify_email(sender: str, subject: str, content: str = "") -> str:
 
 
 def decide_category(sender: str, subject: str, content: str = "") -> str:
+    llm_result = call_llm_for_category(sender, subject, content)
+    if llm_result:
+        return llm_result
     return classify_email(sender, subject, content)
 
 
@@ -189,7 +245,7 @@ def decide_category(sender: str, subject: str, content: str = "") -> str:
 def create_env():
     try:
         env = EmailTriageEnv()
-        print(f"✅ Environment created using class: {env.__class__.__name__}")
+        print(f"STEP action=create_env status=success env_class={env.__class__.__name__}")
         return env
     except Exception as e:
         raise RuntimeError(
@@ -201,7 +257,6 @@ def create_env():
 # Better score extractor
 # ============================================================
 def extract_score(env, obs=None, info=None):
-    # 1. info dict
     if isinstance(info, dict):
         for key in ["score", "final_score", "accuracy"]:
             if key in info:
@@ -210,7 +265,6 @@ def extract_score(env, obs=None, info=None):
                 except:
                     pass
 
-    # 2. observation dict/object
     d = obs_to_dict(obs)
     for key in ["score", "final_score", "accuracy"]:
         if key in d:
@@ -219,7 +273,6 @@ def extract_score(env, obs=None, info=None):
             except:
                 pass
 
-    # 3. env attributes
     for attr in ["score", "final_score", "accuracy"]:
         if hasattr(env, attr):
             try:
@@ -227,7 +280,6 @@ def extract_score(env, obs=None, info=None):
             except:
                 pass
 
-    # 4. env methods
     for method_name in ["get_score", "compute_score", "final_score"]:
         if hasattr(env, method_name):
             try:
@@ -243,15 +295,14 @@ def extract_score(env, obs=None, info=None):
 # Main task runner
 # ============================================================
 def run_task(env, task_id: str):
-    print("=" * 60)
-    print(f"📌 Running Task: {task_id.upper()}")
-    print("=" * 60)
+    print(f"\nSTART task={task_id.upper()} env=EmailTriageEnv")
 
     total_reward = 0.0
     step_count = 0
     info = {}
 
     try:
+        print("STEP action=reset_env")
         obs = env.reset(task_id)
     except TypeError:
         try:
@@ -262,7 +313,8 @@ def run_task(env, task_id: str):
     inbox = get_inbox(obs)
 
     if not inbox:
-        print("⚠ No emails found in observation.")
+        print("STEP action=check_inbox status=empty")
+        print("END status=error reason=no_emails_found")
         print("🔍 Observation received:")
         print(obs)
         return {
@@ -270,6 +322,8 @@ def run_task(env, task_id: str):
             "total_reward": 0.0,
             "steps": 0
         }
+
+    print(f"STEP action=check_inbox status=success email_count={len(inbox)}")
 
     done = False
 
@@ -288,15 +342,15 @@ def run_task(env, task_id: str):
         # READ
         # -------------------------
         try:
+            print(f"STEP action=read_email email_id={email_id}")
             action = SimpleAction(action_type="read", email_id=email_id)
             obs, reward, done, info = env.step(action)
             step_count += 1
             total_reward += reward
 
-            print(f"Step {step_count}: read (email: {email_id})")
             print(f"  Reward: {reward:+.2f} | Total: {total_reward:+.2f}")
         except Exception as e:
-            print(f"❌ Error in READ step for {email_id}: {e}")
+            print(f"STEP action=read_email status=error email_id={email_id} error={str(e)}")
             continue
 
         content = get_email_content(obs)
@@ -306,7 +360,7 @@ def run_task(env, task_id: str):
         # -------------------------
         try:
             category = decide_category(sender, subject, content)
-            print(f"  Debug -> sender={sender}, subject={subject}, predicted={category}")
+            print(f"STEP action=categorize_email email_id={email_id} predicted={category}")
 
             action = SimpleAction(
                 action_type="categorize",
@@ -318,25 +372,16 @@ def run_task(env, task_id: str):
             step_count += 1
             total_reward += reward
 
-            print(f"Step {step_count}: categorize (email: {email_id}) -> {category}")
             print(f"  Reward: {reward:+.2f} | Total: {total_reward:+.2f}")
         except Exception as e:
-            print(f"❌ Error in CATEGORIZE step for {email_id}: {e}")
+            print(f"STEP action=categorize_email status=error email_id={email_id} error={str(e)}")
             continue
 
-    # Try extracting score robustly
     final_score = extract_score(env, obs=obs, info=info)
 
-    # Fallback: estimate score if environment doesn't expose it
     if final_score is None:
         read_reward_total = len(inbox) * 0.1
         categorize_reward = total_reward - read_reward_total
-
-        # categorize_reward = 0.5(correct) - 0.2(wrong)
-        # wrong = n - correct
-        # categorize_reward = 0.5c - 0.2(n-c)
-        #                   = 0.7c - 0.2n
-        # c = (categorize_reward + 0.2n) / 0.7
 
         n = len(inbox)
         estimated_correct = (categorize_reward + (0.2 * n)) / 0.7
@@ -344,10 +389,11 @@ def run_task(env, task_id: str):
 
         final_score = round(max(0.0, min(1.0, estimated_score)), 2)
 
-    print("\n✅ Task Results:")
+    print("STEP action=task_summary")
     print(f"  Final Score: {final_score:.2f}")
     print(f"  Total Reward: {total_reward:+.2f}")
     print(f"  Steps: {step_count}")
+    print(f"END status=success task={task_id.upper()} score={final_score:.2f}")
 
     return {
         "score": final_score,
@@ -365,10 +411,10 @@ def main():
 
     for task in tasks:
         try:
-            env = create_env()   # fresh env per task
+            env = create_env()
             results[task.upper()] = run_task(env, task)
         except Exception as e:
-            print(f"❌ Failed running task '{task}': {e}")
+            print(f"END status=error task={task.upper()} error={str(e)}")
             results[task.upper()] = {
                 "score": 0.0,
                 "total_reward": 0.0,
